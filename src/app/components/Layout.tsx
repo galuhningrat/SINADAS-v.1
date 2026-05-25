@@ -1,7 +1,7 @@
-import { ReactNode, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { getMenuForRole, roleLabels } from '../config/roles';
+import { ReactNode, useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate, useLocation } from "react-router-dom";
+import { getMenuForRole, roleLabels } from "../config/roles";
 import {
   Building2,
   LogOut,
@@ -9,9 +9,9 @@ import {
   X,
   Bell,
   User,
-  ChevronDown
-} from 'lucide-react';
-import { mockNotifications } from '../data/mockData';
+  ChevronDown,
+} from "lucide-react";
+import { mockNotifications } from "../data/mockData";
 
 interface LayoutProps {
   children: ReactNode;
@@ -32,7 +32,7 @@ export function Layout({ children }: LayoutProps) {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -41,12 +41,16 @@ export function Layout({ children }: LayoutProps) {
       <aside className="hidden md:flex md:flex-col fixed inset-y-0 left-0 w-64 bg-[#6B1F3A] text-white z-10">
         <div className="p-6 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-lg">
-              <Building2 className="h-6 w-6" />
-            </div>
+            {/* Logo STTI */}
+            <img
+              src="/logo-stti.png"
+              alt="Logo STTI Cirebon"
+              className="w-10 h-10 object-contain"
+            />
+
             <div>
               <h1 className="font-bold text-lg">SINADAS</h1>
-              <p className="text-xs text-white/70">Aset & Sarpras</p>
+              <p className="text-xs text-white/70">STTI Cirebon</p>
             </div>
           </div>
         </div>
@@ -63,8 +67,8 @@ export function Layout({ children }: LayoutProps) {
                   onClick={() => navigate(item.path)}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                     isActive
-                      ? 'bg-white text-[#6B1F3A] font-medium'
-                      : 'text-white/80 hover:bg-white/10 hover:text-white'
+                      ? "bg-white text-[#6B1F3A] font-medium"
+                      : "text-white/80 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   <Icon className="h-5 w-5 shrink-0" />
@@ -87,7 +91,9 @@ export function Layout({ children }: LayoutProps) {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium truncate">{user.name}</p>
-              <p className="text-xs text-white/60 truncate">{roleLabels[user.role]}</p>
+              <p className="text-xs text-white/60 truncate">
+                {roleLabels[user.role]}
+              </p>
             </div>
           </div>
         </div>
@@ -134,12 +140,14 @@ export function Layout({ children }: LayoutProps) {
                       }}
                       className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                         isActive
-                          ? 'bg-white text-[#6B1F3A] font-medium'
-                          : 'text-white/80 hover:bg-white/10 hover:text-white'
+                          ? "bg-white text-[#6B1F3A] font-medium"
+                          : "text-white/80 hover:bg-white/10 hover:text-white"
                       }`}
                     >
                       <Icon className="h-5 w-5 shrink-0" />
-                      <span className="flex-1 text-left text-sm">{item.label}</span>
+                      <span className="flex-1 text-left text-sm">
+                        {item.label}
+                      </span>
                     </button>
                   );
                 })}
@@ -163,7 +171,8 @@ export function Layout({ children }: LayoutProps) {
               </button>
               <div>
                 <h2 className="text-lg font-semibold text-gray-900">
-                  {menuItems.find((m) => m.path === location.pathname)?.label || 'SINADAS'}
+                  {menuItems.find((m) => m.path === location.pathname)?.label ||
+                    "SINADAS"}
                 </h2>
                 <p className="text-sm text-gray-600">{roleLabels[user.role]}</p>
               </div>
@@ -171,7 +180,7 @@ export function Layout({ children }: LayoutProps) {
 
             <div className="flex items-center gap-3">
               <button
-                onClick={() => navigate('/notifications')}
+                onClick={() => navigate("/notifications")}
                 className="relative p-2 hover:bg-gray-100 rounded-lg"
               >
                 <Bell className="h-5 w-5 text-gray-600" />
@@ -197,7 +206,7 @@ export function Layout({ children }: LayoutProps) {
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1">
                     <button
                       onClick={() => {
-                        navigate('/profile');
+                        navigate("/profile");
                         setProfileOpen(false);
                       }}
                       className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2"
